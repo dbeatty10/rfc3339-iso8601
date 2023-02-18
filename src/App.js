@@ -10,12 +10,13 @@ import { TimeZonePicker } from './Components/TimeZonePicker';
 import { getBrowserTimezone } from './util/timeZone';
 import TimeZoneContext from './TimeZoneContext';
 
-function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, initalShowHTML = false, initalShowColours = true, readOnlyMode = false, showDiagram = true }) {
+function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, initalShowHTML = false, initalShowColours = true, readOnlyMode = false, showDiagram = true, initialShowSixDigitYears = false }) {
   const [ now, setNow ] = useState(() => (initialDate || new Date()));
   const [ showISO, setShowISO ] = useSavedState("rfciso.showISO", initalShowISO);
   const [ showRFC, setShowRFC ] = useSavedState("rfciso.showRFC", initalShowRFC);
   const [ showHTML, setShowHTML ] = useSavedState("rfciso.showHTML", initalShowHTML);
   const [ showColours, setShowColours ] = useSavedState("rfciso.showColours", initalShowColours);
+  const [ showSixDigitYears, setShowSixDigitYears ] = useSavedState("rfciso.showColours", initialShowSixDigitYears);
   const [ isPaused, setIsPaused ] = useState(initialDate !== null);
   const [ selectedTimeZone, setSelectedTimeZone ] = useSavedState("rfciso.selectedTimeZone", getBrowserTimezone() || "");
 
@@ -64,9 +65,13 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
                   <input type="checkbox" checked={showHTML} onChange={e => setShowHTML(e.target.checked)} />
                   Show HTML
                 </label>
+                <label>
+                  <input type="checkbox" checked={showSixDigitYears} onChange={e => setShowSixDigitYears(e.target.checked)} />
+                  Show Six-Digit Years
+                </label>
               </p>
             }
-            <Diagram date={now} iso={showISO} rfc={showRFC} html={showHTML} showKey={showColours} />
+            <Diagram date={now} iso={showISO} rfc={showRFC} html={showHTML} showKey={showColours} showSix={showSixDigitYears} />
           </>
         }
         <h2 style={{marginBottom:0}}>Format Listing</h2>
