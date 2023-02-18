@@ -47,7 +47,6 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
   return (
     <TimeZoneContext.Provider value={selectedTimeZone}>
       <div className="App">
-        { !readOnlyMode && <h1>{getTitle(showRFC, showISO, showHTML)}</h1> }
         { showDiagram &&
           <>
             {
