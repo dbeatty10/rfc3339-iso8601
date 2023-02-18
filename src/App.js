@@ -47,10 +47,8 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
   return (
     <TimeZoneContext.Provider value={selectedTimeZone}>
       <div className="App">
-        { !readOnlyMode && <h1>{getTitle(showRFC, showISO, showHTML)}</h1> }
         { showDiagram &&
           <>
-            <Diagram date={now} iso={showISO} rfc={showRFC} html={showHTML} showKey={showColours} />
             {
               !readOnlyMode &&
               <p className='App-DiagramControls'>
@@ -72,6 +70,7 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
                 </label>
               </p>
             }
+            <Diagram date={now} iso={showISO} rfc={showRFC} html={showHTML} showKey={showColours} />
           </>
         }
         <h2 style={{marginBottom:0}}>Format Listing</h2>
