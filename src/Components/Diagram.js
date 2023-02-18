@@ -4,7 +4,7 @@ import { formatUTC } from "../util/format";
 import { getCurrentTimezoneOffset } from "../util/timeZone";
 
 function Diagram (props) {
-  const { date, rfc = true, iso = true, html = false, showKey = false, ...restProps } = props;
+  const { date, rfc = true, iso = true, html = false, showKey = true, showSix = true, ...restProps } = props;
   const [ showDate, setShowDate ] = React.useState(false);
   const [ showTime, setShowTime ] = React.useState(false);
   const [ showDateTime, setShowDateTime ] = React.useState(true);
@@ -366,6 +366,10 @@ function Diagram (props) {
             {formatUTC("R/%Y-W%W-%wT%h/PT45M", date, timeZoneOffset)}
           </text>
 
+        </g>
+      }
+
+      { iso && showSix &&
           <g id="iso-mutual" transform="translate(20 -18)">
             <circle
               cx={150.327}
@@ -446,8 +450,8 @@ function Diagram (props) {
               {formatUTC("+00%Y%M%DT%h%m%sZ", date)}
             </text>
           </g>
-        </g>
       }
+
       { html &&
         <g id="html" transform="translate(-12 6)">
           <circle
