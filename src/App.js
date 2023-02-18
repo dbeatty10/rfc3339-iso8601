@@ -10,7 +10,7 @@ import { TimeZonePicker } from './Components/TimeZonePicker';
 import { getBrowserTimezone } from './util/timeZone';
 import TimeZoneContext from './TimeZoneContext';
 
-function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, initalShowHTML = false, initalShowColours = false, readOnlyMode = false, showDiagram = true }) {
+function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, initalShowHTML = false, initalShowColours = true, readOnlyMode = false, showDiagram = true }) {
   const [ now, setNow ] = useState(() => (initialDate || new Date()));
   const [ showISO, setShowISO ] = useSavedState("rfciso.showISO", initalShowISO);
   const [ showRFC, setShowRFC ] = useSavedState("rfciso.showRFC", initalShowRFC);
