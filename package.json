@@ -2,7 +2,7 @@
   "name": "rfc3339-iso8601",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ijmacd.github.io/rfc3339-iso8601",
+  "homepage": "https://dbeatty10.github.io/rfc3339-iso8601",
   "description": "Comparison between some valid RFC 3339 and ISO 8601 date formats.",
   "displayName": "RFC 3339 vs. ISO 8601",
   "screenshot": "/res/Screenshot.png",
