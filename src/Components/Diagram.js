@@ -5,11 +5,11 @@ import { getCurrentTimezoneOffset } from "../util/timeZone";
 
 function Diagram (props) {
   const { date, rfc = true, iso = true, html = false, showKey = false, ...restProps } = props;
-  const [ showDate, setShowDate ] = React.useState(true);
-  const [ showTime, setShowTime ] = React.useState(true);
+  const [ showDate, setShowDate ] = React.useState(false);
+  const [ showTime, setShowTime ] = React.useState(false);
   const [ showDateTime, setShowDateTime ] = React.useState(true);
-  const [ showPeriod, setShowPeriod ] = React.useState(true);
-  const [ showRange, setShowRange ] = React.useState(true);
+  const [ showPeriod, setShowPeriod ] = React.useState(false);
+  const [ showRange, setShowRange ] = React.useState(false);
 
   const timeZone = React.useContext(TimeZoneContext);
 
