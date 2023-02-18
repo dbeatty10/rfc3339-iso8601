@@ -64,10 +64,6 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
                   <input type="checkbox" checked={showHTML} onChange={e => setShowHTML(e.target.checked)} />
                   Show HTML
                 </label>
-                <label>
-                  <input type="checkbox" checked={showColours} onChange={e => setShowColours(e.target.checked)} />
-                  Show Colours
-                </label>
               </p>
             }
             <Diagram date={now} iso={showISO} rfc={showRFC} html={showHTML} showKey={showColours} />
