@@ -71,7 +71,7 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
                 </label>
               </p>
             }
-            <Diagram date={now} iso={showISO} rfc={showRFC} html={showHTML} showKey={showColours} showSix={showSixDigitYears} />
+            <Diagram date={now} iso={showISO} rfc={showRFC} html={showHTML} showSix={showSixDigitYears} />
           </>
         }
         <h2 style={{marginBottom:0}}>Format Listing</h2>
