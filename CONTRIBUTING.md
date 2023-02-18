@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Prerequisites
+
+- Node.js: `node --version`
+- npm: `npm --version`
+- yarn: `yarn --version`
+
+## Install
+
+### `npm install`
+
+See here: https://stackoverflow.com/questions/47612580/react-scripts-command-not-found
+
 ## Available Scripts
 
 In the project directory, you can run:
