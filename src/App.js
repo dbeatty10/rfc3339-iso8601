@@ -54,20 +54,20 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
               !readOnlyMode &&
               <p className='App-DiagramControls'>
                 <label>
-                  <input type="checkbox" checked={showISO} onChange={e => setShowISO(e.target.checked)} />
-                  Show ISO 8601
+                  <input type="checkbox" checked={showHTML} onChange={e => setShowHTML(e.target.checked)} />
+                  Show HTML
                 </label>
                 <label>
                   <input type="checkbox" checked={showRFC} onChange={e => setShowRFC(e.target.checked)} />
                   Show RFC 3339
                 </label>
                 <label>
-                  <input type="checkbox" checked={showHTML} onChange={e => setShowHTML(e.target.checked)} />
-                  Show HTML
+                  <input type="checkbox" checked={showISO} onChange={e => setShowISO(e.target.checked)} />
+                  Show ISO 8601
                 </label>
                 <label>
                   <input type="checkbox" checked={showSixDigitYears} onChange={e => setShowSixDigitYears(e.target.checked)} />
-                  Show Six-Digit Years
+                  ISO 8601 Six-Digit Years
                 </label>
               </p>
             }
