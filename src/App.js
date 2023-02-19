@@ -67,7 +67,7 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
                 </label>
                 <label>
                   <input type="checkbox" checked={showSixDigitYears} onChange={e => setShowSixDigitYears(e.target.checked)} />
-                  ISO 8601 Six-Digit Years
+                  Six-Digit Years
                 </label>
               </p>
             }
