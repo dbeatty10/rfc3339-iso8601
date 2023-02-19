@@ -55,15 +55,15 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
               <p className='App-DiagramControls'>
                 <label>
                   <input type="checkbox" checked={showHTML} onChange={e => setShowHTML(e.target.checked)} />
-                  Show HTML
+                  HTML
                 </label>
                 <label>
                   <input type="checkbox" checked={showRFC} onChange={e => setShowRFC(e.target.checked)} />
-                  Show RFC 3339
+                  RFC 3339
                 </label>
                 <label>
                   <input type="checkbox" checked={showISO} onChange={e => setShowISO(e.target.checked)} />
-                  Show ISO 8601
+                  ISO 8601
                 </label>
                 <label>
                   <input type="checkbox" checked={showSixDigitYears} onChange={e => setShowSixDigitYears(e.target.checked)} />
