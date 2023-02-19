@@ -72,6 +72,11 @@ pre code {
   fill: #E69B58;
 }
 
+.diagram--key .datetimenaive,
+.key-datetimenaive {
+  fill: #ABDF13;
+}
+
 .diagram--key .period,
 .key-period {
   fill: #5d3754;
@@ -101,6 +106,10 @@ pre code {
 }
 
 .diagram--key.diagram--hide-datetime .datetime {
+  display: none;
+}
+
+.diagram--key.diagram--hide-datetimenaive .datetimenaive {
   display: none;
 }
 
