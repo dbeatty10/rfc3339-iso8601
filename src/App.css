@@ -67,9 +67,14 @@ pre code {
   fill: #5D73F0;
 }
 
-.diagram--key .datetime,
-.key-datetime {
+.diagram--key .datetimeaware,
+.key-datetimeaware {
   fill: #E69B58;
+}
+
+.diagram--key .datetimenaive,
+.key-datetimenaive {
+  fill: #ABDF13;
 }
 
 .diagram--key .period,
@@ -100,7 +105,11 @@ pre code {
   display: none;
 }
 
-.diagram--key.diagram--hide-datetime .datetime {
+.diagram--key.diagram--hide-datetimeaware .datetimeaware {
+  display: none;
+}
+
+.diagram--key.diagram--hide-datetimenaive .datetimenaive {
   display: none;
 }
 
