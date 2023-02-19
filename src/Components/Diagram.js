@@ -7,7 +7,7 @@ function Diagram (props) {
   const { date, rfc = true, iso = true, html = true, showKey = true, showSix = false, ...restProps } = props;
   const [ showDate, setShowDate ] = React.useState(true);
   const [ showTime, setShowTime ] = React.useState(true);
-  const [ showDateTime, setShowDateTime ] = React.useState(true);
+  const [ showDateTimeAware, setShowDateTimeAware ] = React.useState(true);
   const [ showDateTimeNaive, setShowDateTimeNaive ] = React.useState(true);
   const [ showPeriod, setShowPeriod ] = React.useState(false);
   const [ showRange, setShowRange ] = React.useState(false);
@@ -16,7 +16,7 @@ function Diagram (props) {
 
   const timeZoneOffset = typeof timeZone === "string" ? getCurrentTimezoneOffset(timeZone) : (void 0);
 
-  const className = `diagram ${showKey?"diagram--key":""} ${showDate?"":"diagram--hide-date"} ${showTime?"":"diagram--hide-time"} ${showDateTime?"":"diagram--hide-datetime"} ${showDateTimeNaive?"":"diagram--hide-datetimenaive"} ${showPeriod?"":"diagram--hide-period"} ${showRange?"":"diagram--hide-range"}`;
+  const className = `diagram ${showKey?"diagram--key":""} ${showDate?"":"diagram--hide-date"} ${showTime?"":"diagram--hide-time"} ${showDateTimeAware?"":"diagram--hide-datetimeaware"} ${showDateTimeNaive?"":"diagram--hide-datetimenaive"} ${showPeriod?"":"diagram--hide-period"} ${showRange?"":"diagram--hide-range"}`;
 
   return (
     <svg
@@ -36,8 +36,8 @@ function Diagram (props) {
             <rect x={220} y={65} width={3} height={3} className={showTime?"key-time":"key-off"} />
             <text x={225} y={67}>Time</text>
           </g>
-          <g onClick={() => setShowDateTime(v => !v)}>
-            <rect x={220} y={70} width={3} height={3} className={showDateTime?"key-datetime":"key-off"} />
+          <g onClick={() => setShowDateTimeAware(v => !v)}>
+            <rect x={220} y={70} width={3} height={3} className={showDateTimeAware?"key-datetimeaware":"key-off"} />
             <text x={225} y={72}>DateTime (Aware)</text>
           </g>
           <g onClick={() => setShowDateTimeNaive(v => !v)}>
@@ -72,32 +72,32 @@ function Diagram (props) {
           >
             {"RFC 3339"}
           </text>
-          <text x={58} y={82} className="datetime">
+          <text x={58} y={82} className="datetimeaware">
             {formatUTC("%Y-%M-%D_%h:%m:%sZ", date)}
           </text>
-          <text x={50} y={88} className="datetime">
+          <text x={50} y={88} className="datetimeaware">
             {formatUTC("%Y-%M-%D_%h:%m:%.3sZ", date)}
           </text>
-          <text x={46} y={94} className="datetime">
+          <text x={46} y={94} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%s-00:00", date)}
           </text>
-          <text x={42} y={100} className="datetime">
+          <text x={42} y={100} className="datetimeaware">
             {formatUTC("%Y-%M-%Dt%h:%m:%sz", date)}
           </text>
-          <text x={32} y={106} className="datetime">
+          <text x={32} y={106} className="datetimeaware">
             {formatUTC("%Y-%M-%Dt%h:%m:%s%Z:%z", date, timeZoneOffset)}
           </text>
         </g>
       }
       { (rfc || html) &&
         <g id="rfc-html">
-          <text x={37} y={128} className="datetime">
+          <text x={37} y={128} className="datetimeaware">
             {formatUTC("%Y-%M-%D %h:%m:%sZ", date)}
           </text>
-          <text x={32} y={134} className="datetime">
+          <text x={32} y={134} className="datetimeaware">
             {formatUTC("%Y-%M-%D %h:%m:%.3sZ", date)}
           </text>
-          <text x={29} y={140} className="datetime">
+          <text x={29} y={140} className="datetimeaware">
             {formatUTC("%Y-%M-%D %h:%m:%s%Z:%z", date, timeZoneOffset)}
           </text>
           {/* <text x={30} y={148}>
@@ -110,34 +110,34 @@ function Diagram (props) {
           <text x={76} y={110} className="date">
             {formatUTC("%Y-%M-%D", date, timeZoneOffset)}
           </text>
-          <text x={72} y={116} className="datetime">
+          <text x={72} y={116} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%sZ", date)}
           </text>
-          <text x={84} y={122} className="datetime">
+          <text x={84} y={122} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%.1sZ", date)}
           </text>
-          <text x={70} y={128} className="datetime">
+          <text x={70} y={128} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%.2sZ", date)}
           </text>
-          <text x={86} y={135} className="datetime">
+          <text x={86} y={135} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%.3sZ", date)}
           </text>
-          <text x={68} y={140} className="datetime">
+          <text x={68} y={140} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%s+00:00", date)}
           </text>
-          <text x={84} y={145} className="datetime">
+          <text x={84} y={145} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%.1s+00:00", date)}
           </text>
-          <text x={64} y={150} className="datetime">
+          <text x={64} y={150} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%s%Z:%z", date, timeZoneOffset)}
           </text>
-          <text x={74} y={155} className="datetime">
+          <text x={74} y={155} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%.1s%Z:%z", date, timeZoneOffset)}
           </text>
-          <text x={70} y={160} className="datetime">
+          <text x={70} y={160} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%.2s%Z:%z", date, timeZoneOffset)}
           </text>
-          <text x={65} y={165} className="datetime">
+          <text x={65} y={165} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%.3s%Z:%z", date, timeZoneOffset)}
           </text>
         </g>
@@ -190,7 +190,7 @@ function Diagram (props) {
           <text x={136} y={84} className="datetimenaive">
             {formatUTC("%Y-%M-%DT%.1h", date, timeZoneOffset)}
           </text>
-          <text x={126} y={88} className="datetime">
+          <text x={126} y={88} className="datetimeaware">
             {formatUTC("%Y-%M-%DT%h:%m:%s\u221201:00", date, -60)}
           </text>
           <text x={116} y={92} className="datetimenaive">
@@ -442,7 +442,7 @@ function Diagram (props) {
             <text   x={148}   y={192} className="datetimenaive" >
               {formatUTC("+00%Y%OT%.3h", date, timeZoneOffset)}
               </text>
-            <text   x={130}   y={197} className="datetime" >
+            <text   x={130}   y={197} className="datetimeaware" >
               {formatUTC("+00%Y-%OT%h:%m%Z:%z", date, timeZoneOffset)}
             </text>
             <text   x={128}   y={202} className="datetimenaive" >
@@ -451,7 +451,7 @@ function Diagram (props) {
             <text   x={144}   y={207} className="datetimenaive" >
               {formatUTC("+00%Y%OT%h%m%s", date, timeZoneOffset)}
             </text>
-            <text   x={136}   y={212} className="datetime" >
+            <text   x={136}   y={212} className="datetimeaware" >
               {formatUTC("+00%Y%M%DT%h%m%sZ", date)}
             </text>
           </g>
