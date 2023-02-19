@@ -69,12 +69,12 @@ pre code {
 
 .diagram--key .datetimeaware,
 .key-datetimeaware {
-  fill: #E69B58;
+  fill: #ABDF13;
 }
 
 .diagram--key .datetimenaive,
 .key-datetimenaive {
-  fill: #ABDF13;
+  fill: #E69B58;
 }
 
 .diagram--key .period,
