@@ -184,19 +184,19 @@ function Diagram (props) {
             {"ISO 8601"}
             <tspan x={170.8} dy={6} style={{fontSize:"0.4em"}}>ISO 8601-1:2019</tspan>
           </text>
-          <text x={110} y={84} className="datetime">
+          <text x={110} y={84} className="datetimenaive">
             {formatUTC("%Y-%M-%DT%,1h", date, timeZoneOffset)}
           </text>
-          <text x={136} y={84} className="datetime">
+          <text x={136} y={84} className="datetimenaive">
             {formatUTC("%Y-%M-%DT%.1h", date, timeZoneOffset)}
           </text>
           <text x={126} y={88} className="datetime">
             {formatUTC("%Y-%M-%DT%h:%m:%s\u221201:00", date, -60)}
           </text>
-          <text x={116} y={92} className="datetime">
+          <text x={116} y={92} className="datetimenaive">
             {formatUTC("%Y-%M-%DT%h:%,1m", date, timeZoneOffset)}
           </text>
-          <text x={148} y={92} className="datetime">
+          <text x={148} y={92} className="datetimenaive">
             {formatUTC("%Y-%M-%DT%h:%.1m", date, timeZoneOffset)}
           </text>
           <text x={120} y={96} className="time">
@@ -226,13 +226,13 @@ function Diagram (props) {
           <text x={124} y={104} className="date">
             {formatUTC("%Y-%O", date, timeZoneOffset)}
           </text>
-          <text x={140} y={104} className="datetime">
+          <text x={140} y={104} className="datetimenaive">
             {formatUTC("%Y-%OT%h:%m", date, timeZoneOffset)}
           </text>
-          <text x={166} y={104} className="datetime">
+          <text x={166} y={104} className="datetimenaive">
             {formatUTC("%Y-%OT%.1h", date, timeZoneOffset)}
           </text>
-          <text x={126} y={108} className="datetime">
+          <text x={126} y={108} className="datetimenaive">
             {formatUTC("%Y-%OT%h:%m:%s", date, timeZoneOffset)}
           </text>
           <text x={164} y={108} className="range">
@@ -251,13 +251,13 @@ function Diagram (props) {
           <text x={133.259} y={120} className="date">
             {formatUTC("%V-W%W-%w", date, timeZoneOffset)}
           </text>
-          <text x={160.336} y={120} className="datetime">
+          <text x={160.336} y={120} className="datetimenaive">
             {formatUTC("%V-W%W-%wT%h:%m", date, timeZoneOffset)}
           </text>
-          <text x={169.336} y={124} className="datetime">
+          <text x={169.336} y={124} className="datetimenaive">
             {formatUTC("%V-W%W-%wT%h:%m:%s", date, timeZoneOffset)}
           </text>
-          <text x={129.087} y={124} className="datetime">
+          <text x={129.087} y={124} className="datetimenaive">
             {formatUTC("%Y-%M-%DT%h:%m:%s.%u", date, timeZoneOffset)}
           </text>
 
@@ -415,40 +415,40 @@ function Diagram (props) {
             <text   x={130}   y={172} className="date" >
               {formatUTC("+00%Y%M%D", date, timeZoneOffset)}
             </text>
-            <text   x={148}   y={172} className="datetime" >
+            <text   x={148}   y={172} className="datetimenaive" >
               {formatUTC("+00%Y-%M-%DT%h", date, timeZoneOffset)}
             </text>
             <text   x={156}   y={176} className="date" >
               {formatUTC("+00%Y%M", date, timeZoneOffset)}
             </text>
-            <text   x={124}   y={176} className="datetime" >
+            <text   x={124}   y={176} className="datetimenaive" >
               {formatUTC("+00%Y-%M-%DT%h:%m", date, timeZoneOffset)}
             </text>
-            <text   x={148}   y={180} className="datetime" >
+            <text   x={148}   y={180} className="datetimenaive" >
               {formatUTC("+00%Y-%M-%DT%h:%m:%s", date, timeZoneOffset)}
             </text>
-            <text   x={124}   y={184} className="datetime" >
+            <text   x={124}   y={184} className="datetimenaive" >
               {formatUTC("+00%V-W%W-%wT%h", date, timeZoneOffset)}
             </text>
-            <text   x={154}   y={184} className="datetime" >
+            <text   x={154}   y={184} className="datetimenaive" >
               {formatUTC("+00%Y-%OT%h:%m", date, timeZoneOffset)}
             </text>
-            <text   x={138}   y={188} className="datetime" >
+            <text   x={138}   y={188} className="datetimenaive" >
               {formatUTC("+00%V-W%W-%wT%h:%m", date, timeZoneOffset)}
             </text>
-            <text   x={124}   y={192} className="datetime" >
+            <text   x={124}   y={192} className="datetimenaive" >
               {formatUTC("+00%Y-%OT%h", date, timeZoneOffset)}
               </text>
-            <text   x={148}   y={192} className="datetime" >
+            <text   x={148}   y={192} className="datetimenaive" >
               {formatUTC("+00%Y%OT%.3h", date, timeZoneOffset)}
               </text>
             <text   x={130}   y={197} className="datetime" >
               {formatUTC("+00%Y-%OT%h:%m%Z:%z", date, timeZoneOffset)}
             </text>
-            <text   x={128}   y={202} className="datetime" >
+            <text   x={128}   y={202} className="datetimenaive" >
               {formatUTC("+00%Y-%OT%h:%m:%s", date, timeZoneOffset)}
             </text>
-            <text   x={144}   y={207} className="datetime" >
+            <text   x={144}   y={207} className="datetimenaive" >
               {formatUTC("+00%Y%OT%h%m%s", date, timeZoneOffset)}
             </text>
             <text   x={136}   y={212} className="datetime" >
@@ -476,13 +476,13 @@ function Diagram (props) {
             {"HTML"}
             <tspan dx={-28} dy={6} style={{fontSize:"0.4em"}}>Living Standard</tspan>
           </text>
-          <text x={42} y={172} className="datetime">
+          <text x={42} y={172} className="datetimenaive">
             {formatUTC("%Y-%M-%D %h:%m", date, timeZoneOffset)}
           </text>
-          <text x={50} y={178} className="datetime">
+          <text x={50} y={178} className="datetimenaive">
             {formatUTC("%Y-%M-%D %h:%m:%s", date, timeZoneOffset)}
           </text>
-          <text x={54} y={184} className="datetime">
+          <text x={54} y={184} className="datetimenaive">
             {formatUTC("%Y-%M-%D %h:%m:%.3s", date, timeZoneOffset)}
           </text>
           <text x={68} y={190} className="date">
@@ -537,16 +537,16 @@ function Diagram (props) {
           <text x={112} y={180} className="period">
             {formatUTC("P1DT1.123S", date, timeZoneOffset)}
           </text>
-          <text x={80} y={186} className="datetime">
+          <text x={80} y={186} className="datetimenaive">
             {formatUTC("%Y-%M-%DT%h:%m:%s", date, timeZoneOffset)}
           </text>
           <text x={114} y={186} className="date">
             {formatUTC("%Y-%M", date, timeZoneOffset)}
           </text>
-          <text x={100} y={192} className="datetime">
+          <text x={100} y={192} className="datetimenaive">
             {formatUTC("%Y-%M-%DT%h:%m", date, timeZoneOffset)}
           </text>
-          <text x={85} y={198} className="datetime">
+          <text x={85} y={198} className="datetimenaive">
             {formatUTC("%Y-%M-%DT%h:%m:%.3s", date, timeZoneOffset)}
           </text>
           <text x={94} y={204} className="date">
