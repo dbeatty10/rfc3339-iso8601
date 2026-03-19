@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Diagram from './Components/Diagram';
 import { useSavedState } from './hooks/useSavedState';
 import { DownloadTestFile } from './Components/DownloadTestFile';
@@ -9,23 +9,34 @@ import { ISO8601aaS } from './Components/ISO8601aaS';
 import { TimeZonePicker } from './Components/TimeZonePicker';
 import { getBrowserTimezone } from './util/timeZone';
 import TimeZoneContext from './TimeZoneContext';
+import { mutualTypes } from './types';
 
-function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, initalShowHTML = true, initalShowColours = true, readOnlyMode = false, showDiagram = true, initialShowSixDigitYears = false }) {
+function App ({
+  initialDate = /** @type {Date?} */ (null),
+  initialShowISO = true,
+  initialShowRFC = true,
+  initialShowHTML = true,
+  initialShowColours = true,
+  readOnlyMode = false,
+  showDiagram = true,
+  initialTimeZone = /** @type {string?} */ (null),
+}) {
   const [ now, setNow ] = useState(() => (initialDate || new Date()));
-  const [ showISO, setShowISO ] = useSavedState("rfciso.showISO", initalShowISO);
-  const [ showRFC, setShowRFC ] = useSavedState("rfciso.showRFC", initalShowRFC);
-  const [ showHTML, setShowHTML ] = useSavedState("rfciso.showHTML", initalShowHTML);
-  const [ showColours, setShowColours ] = useSavedState("rfciso.showColours", initalShowColours);
-  const [ showSixDigitYears, setShowSixDigitYears ] = useSavedState("rfciso.showColours", initialShowSixDigitYears);
+  const [ showISO, setShowISO ] = useSavedState("rfciso.showISO", initialShowISO);
+  const [ showRFC, setShowRFC ] = useSavedState("rfciso.showRFC", initialShowRFC);
+  const [ showHTML, setShowHTML ] = useSavedState("rfciso.showHTML", initialShowHTML);
+  const [ showColours, setShowColours ] = useSavedState("rfciso.showColours", initialShowColours);
   const [ isPaused, setIsPaused ] = useState(initialDate !== null);
-  const [ selectedTimeZone, setSelectedTimeZone ] = useSavedState("rfciso.selectedTimeZone", getBrowserTimezone() || "");
+  const [ selectedTimeZone, setSelectedTimeZone ] = useSavedState("rfciso.selectedTimeZone", initialTimeZone || getBrowserTimezone() || "");
+
+  const mutualType = useRef(mutualTypes[Math.floor((Math.random() * mutualTypes.length))]);
 
   useEffect(() => {
     if (!isPaused) {
       const update = () => setNow(new Date());
       update();
       const intervalID = setInterval(update, 1000);
-      return () => clearTimeout(intervalID);
+      return () => clearInterval(intervalID);
     }
   }, [isPaused]);
 
@@ -65,13 +76,9 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
                   <input type="checkbox" checked={showISO} onChange={e => setShowISO(e.target.checked)} />
                   ISO 8601
                 </label>
-                <label>
-                  <input type="checkbox" checked={showSixDigitYears} onChange={e => setShowSixDigitYears(e.target.checked)} />
-                  Six-Digit Years
-                </label>
               </p>
             }
-            <Diagram date={now} iso={showISO} rfc={showRFC} html={showHTML} showSix={showSixDigitYears} />
+            <Diagram date={now} iso={showISO} rfc={showRFC} html={showHTML} initialMutual={mutualType.current} />
           </>
         }
         <h2 style={{marginBottom:0}}>Format Listing</h2>
@@ -79,21 +86,15 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
         <ul>
           <li>This table is not exhaustive.</li>
           <li>This page targets <a href="https://www.iso.org/obp/ui#iso:std:iso:8601:-1:ed-1:v1:en">ISO 8601-1:2019</a>. Previous editions and drafts contain key differences.</li>
-          <li><a href="https://www.iso.org/obp/ui#iso:std:iso:8601:-2:ed-1:v1:en">ISO 8601-2:2019</a> contains additional representations including sub-year groupings such as for seasons; grouped units; sets; uncertainty qualifications; and date arithmetic. These are not yet represented on this page.</li>
-          <li><a href="https://datatracker.ietf.org/doc/html/rfc3339">RFC 3339</a> allows for other characters to replace <code>T</code> but only gives a space character as an example.</li>
+          <li><a href="https://www.iso.org/obp/ui#iso:std:iso:8601:-2:ed-1:v1:en">ISO 8601-2:2019</a> contains additional representations including sub-year groupings (e.g. for seasons); grouped units; sets; uncertainty qualifications; and date arithmetic. These are not yet represented on this page.</li>
+          <li><a href="https://datatracker.ietf.org/doc/html/rfc3339">RFC 3339</a> suggests other characters could be specified to replace the <code>T</code> in downstream standards but only gives a space character as an example.</li>
           <li>RFC 3339 is case-insensitive so every <code>T</code> or <code>Z</code> could also be <code>t</code> or <code>z</code> respectively. Previous editions of ISO 8601 were also case-insensitive.</li>
           {/* ISO 8601-1:2019 § 5.3.1.4 */}
-          <li>ISO 8601 allows decimal fractions of the smallest time value. These are mostly represented here by a single fractional digit but the standard allows arbitrary precision.</li>
+          <li title="ISO 8601-1:2019 § 5.3.1.4">ISO 8601 allows decimal fractions of the smallest time value. These are mostly represented here by a single fractional digit but the standard allows arbitrary precision.</li>
           {/* ISO 8601-1:2019 § 3.2.6 */}
-          <li>ISO 8601 allows commas and dots for decimal separation but they are interchangeable in all formats.</li>
-          {/* ISO 8601-1:2019 § 3.2.1 */}
-          <li>
-            ISO 8601 uses a <em>hyphen</em> character (in Unicode, <code>U+2010 HYPHEN "‐"</code>) and <em>minus</em> character (in Unicode, <code>U+2212 MINUS "−"</code>).<br/>
-            When using character sets which don't have these characters a <em>hyphen-minus</em> character (in Unicode, <code>U+2D HYPHEN-MINUS "-"</code>) should be used instead.<br/>
-            The formatter defaults to using hyphen-minus which is valid under both standards.
-          </li>
+          <li title="ISO 8601-1:2019 § 3.2.6">ISO 8601 allows commas and dots for decimal separation but they are interchangeable in all formats.</li>
           {/* ISO 8601-1:2019 § 5.3.5 */}
-          <li>
+          <li title="ISO 8601-1:2019 § 5.3.5">
             ISO 8601-1:2019 permits omitting the <code>T</code> in the <em>time of day</em> representations (<b>Times</b>) when unambiguous.<br/>However, a <code>T</code> is always required in <em>date and time of day</em> representations (<b>Date-Times</b>).<br/>
             Previous editions also allowed omitting the <code>T</code> in Date-Times but it was never permitted to <em>insert</em> alternative characters (e.g. space or underscore).
           </li>
@@ -121,13 +122,14 @@ function App ({ initialDate = null, initalShowISO = true, initalShowRFC = true, 
 %m - Minute
 %s - Second
 %u - Microsecond
+%n - Nanosecond
 
 %Z - Zone Hour including +/-
 %z - Zone Minute
 
 %[,.]3x - Value including fraction with given precision, using either comma or dot.
-%−Z     - Use U+2212 for negative timezone hours (ISO recommended)
-  `}
+%−Z     - Use U+2212 for negative timezone hours
+`}
           </code>
         </pre>
         {
